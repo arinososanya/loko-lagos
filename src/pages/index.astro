@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import bg from '../assets/bg-skyline.png';
+import danfo from '../assets/danfo.png';
+import officer from '../assets/officer.png';
+import sign from '../assets/voting-sign.png';
+import sidewalk from '../assets/sidewalk.png';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Loko Lagos — Home">
+  <section class="hero-scene">
+    <img class="layer-bg" src={bg.src} alt="A Lagos street scene at sunset" />
+	<img class="cutout layer-sidewalk" src={sidewalk.src} alt="" />
+    <img class="cutout layer-sign" src={sign.src} alt="" />
+    <img class="cutout layer-danfo" src={danfo.src} alt="" />
+    <img class="cutout layer-officer" src={officer.src} alt="" />
+  </section>
 </Layout>
+
+<style>
+  .hero-scene {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  /* the background sits in normal flow and defines the box's height */
+  .layer-bg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .layer-sidewalk 
+  { bottom: 12%;
+  left: 0; 
+  width: 100%; 
+  }
+
+  /* every cutout floats on top, positioned against the box */
+  .cutout { position: absolute; }
+
+  /* nudge these numbers live in the browser until they match the mockup */
+  .layer-sign    { top: 22%;   left: 55%;  width: 14%; }
+  .layer-danfo   { bottom: 6%; right: 4%;  width: 46%; }
+  .layer-officer { bottom: 2%; left: 38%;  width: 12%; }
+</style>

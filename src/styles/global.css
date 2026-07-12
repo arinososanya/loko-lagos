@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Nico Moji';
+  src: url('/fonts/NicoMoji-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --coral: #FF6B35;
+  --dusk:  #3B2A53;
+  --cream: #FBF4E9;
+  --ink:   #1E1813;
+  --green: #12A150;
+  --sun:   #FFC23C;
+  --gold:  #FEC02C;   /* the heading + button yellow from Figma */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #000;
+  color: var(--cream);
+  font-family: system-ui, sans-serif;
+}

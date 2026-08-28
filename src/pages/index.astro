@@ -1,47 +1,180 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import bg from '../assets/bg-skyline.png';
-import danfo from '../assets/danfo.png';
-import officer from '../assets/officer.png';
-import sign from '../assets/voting-sign.png';
-import sidewalk from '../assets/sidewalk.png';
+import { Image } from 'astro:assets';
+import heroBg from '../assets/hero-bg.png';
+import heroRoad from '../assets/hero-road.png';
+import heroDanfo from '../assets/hero-danfo.png';
 ---
 
 <Layout title="Loko Lagos — Home">
-  <section class="hero-scene">
-    <img class="layer-bg" src={bg.src} alt="A Lagos street scene at sunset" />
-	<img class="cutout layer-sidewalk" src={sidewalk.src} alt="" />
-    <img class="cutout layer-sign" src={sign.src} alt="" />
-    <img class="cutout layer-danfo" src={danfo.src} alt="" />
-    <img class="cutout layer-officer" src={officer.src} alt="" />
+  <section class="hero">
+    <div class="hero-layers">
+      <Image src={heroBg} alt="Lagos skyline at sunset over the water" class="hero-layer" format="webp" loading="eager" fetchpriority="high" />
+      <Image src={heroRoad} alt="" class="hero-layer" format="webp" loading="eager" />
+      <Image src={heroDanfo} alt="A yellow danfo bus crossing the bridge with passengers aboard" class="hero-layer" format="webp" loading="eager" />
+    </div>
+
+    <!-- <div class="hero-scrim" aria-hidden="true"></div>  -->
+
+    <nav class="hero-nav">
+      <span class="logo">LOKO LAGOS</span>
+      <ul class="nav-links">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">COMICS</a></li>
+        <li><a href="#">CHARACTERS</a></li>
+      </ul>
+      <a href="#" class="btn-join">JOIN THE JOURNEY</a>
+    </nav>
+
+    <div class="hero-content">
+      <p class="eyebrow">Welcome to</p>
+      <h1 class="title">LOKO LAGOS</h1>
+      <p class="tagline">Center of Madness</p>
+      <a href="#" class="btn-read">READ ISSUE #1</a>
+    </div>
   </section>
 </Layout>
 
 <style>
-  .hero-scene {
+  .hero {
     position: relative;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
   }
-  /* the background sits in normal flow and defines the box's height */
-  .layer-bg {
-    display: block;
+
+  .hero-layers {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-layer {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .layer-sidewalk 
-  { bottom: 12%;
-  left: 0; 
-  width: 100%; 
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: linear-gradient(
+      100deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.3) 30%,
+      rgba(0, 0, 0, 0) 60%
+    );
   }
 
-  /* every cutout floats on top, positioned against the box */
-  .cutout { position: absolute; }
+  .hero-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 3.5rem;
+  }
 
-  /* nudge these numbers live in the browser until they match the mockup */
-  .layer-sign    { top: 22%;   left: 55%;  width: 14%; }
-  .layer-danfo   { bottom: 6%; right: 4%;  width: 46%; }
-  .layer-officer { bottom: 2%; left: 38%;  width: 12%; }
+  .logo {
+    font-family: 'Peralta', serif;  
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  .btn-join {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    background: var(--ink);  
+    /* border: 1.5px solid var(--cream); */
+    border-radius: 999px;
+    padding: 0.7rem 1.6rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-join:hover {
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 9rem;
+    left: 3.5rem;
+    z-index: 10;
+    max-width: 32rem;
+  }
+
+  .eyebrow {
+    font-family: 'Comic Relief', cursive;
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--ink);
+    margin: 0 0 0.25rem;
+  }
+
+  .title {
+    font-family: 'Peralta', serif; 
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+  }
+
+  .tagline {
+    font-family: 'Comic Relief', cursive;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin: 0 0 2rem;
+  }
+
+  .btn-read {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 999px;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+  }
+
+  .btn-read:hover {
+    filter: brightness(1.08);
+  }
 </style>
